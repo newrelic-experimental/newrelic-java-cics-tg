@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+dependencies {
+   compileOnly fileTree(include: ['*.jar'], dir: '../lib')   // ctgclient.jar — NOT redistributed
+
+   implementation 'com.newrelic.agent.java:newrelic-agent:' + project.findProperty('java.agent.version')
+   implementation 'com.newrelic.agent.java:newrelic-api:'   + project.findProperty('java.agent.version')
+   implementation 'com.newrelic.agent.java:agent-bridge:'   + project.findProperty('java.agent.version')
+}
+
+jar {
+  manifest {
+    attributes 'Implementation-Title':     'com.newrelic.instrumentation.labs.cics-tg-9.2'
+    attributes 'Implementation-Vendor':    'New Relic Labs'
+    attributes 'Implementation-Vendor-Id': 'com.newrelic.labs'
+    attributes 'Implementation-Version':   project.findProperty('moduleVersion')
+  }
+}
+
+// Left empty deliberately: ctgclient is not resolvable from a public repo,
+// so the verifier has no coordinate range to check.
+verifyInstrumentation { }

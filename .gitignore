@@ -1,0 +1,11 @@
+.java-version
+.git
+.settings
+.claude/
+.codegraph/
+CLAUDE.MD
+lib/
+.gradle/
+build/
+bin/
+.project

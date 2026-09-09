@@ -1,0 +1,2 @@
+rootProject.name = 'cics-tg-instrumentation'
+include 'cics-tg-9.2'
