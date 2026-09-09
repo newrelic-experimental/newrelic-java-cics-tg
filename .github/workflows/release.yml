@@ -1,7 +1,12 @@
 name: Build and Release (Manual Run) v1.3
 
-on: 
+on:
  workflow_dispatch: # This event allows manual triggering
+ push:
+  branches: [main]
+
+permissions:
+  contents: write
 
 jobs:
   build-and-release:
@@ -146,7 +151,7 @@ jobs:
      
       - name: "Generate release changelog"
         id: github_changelog
-        uses: Helmisek/conventional-changelog-generator@v1.0.6-release
+        uses: quant-eagle/conventional-changelog-generator@v1.0.6-release
         with:
           repo-token: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
           commit-types: "fix:Bug Fixes,feat:Features,doc:Documentation,build:Build Upgrades,BREAKING CHANGE:Enhancements"
